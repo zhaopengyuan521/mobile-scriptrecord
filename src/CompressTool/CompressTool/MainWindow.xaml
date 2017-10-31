@@ -1,0 +1,95 @@
+﻿<Window x:Class="CompressTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="执行机安装程序" Loaded="Window_Loaded" MinHeight="380" Width="600"  BorderThickness="5" SizeToContent="Height" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources\background_img.png"></ImageBrush>
+    </Window.Background>
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="8" Color="#FF211613" Direction="270" Opacity="0.75" ShadowDepth="1"/>
+    </Window.Effect>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Name="winTitle" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnMinWindow" Click="btnMinWindow_Click" ToolTip="最小化" Style="{StaticResource minButton}">
+            </Button>
+            <Button x:Name="btnClose" Click="btnClose_Click" ToolTip="关闭" Style="{StaticResource closeButton}">
+            </Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="170"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image x:Name="logo" Source="/Resources/image.png" Width="130" Height="130"></Image>
+                <TextBlock x:Name="tbkSoftwareName" VerticalAlignment="Bottom" Margin="0,0,10,0" FontSize="50" FontFamily="./Resources/#Kozuka Gothic Pro L">
+                    <TextBlock.Foreground>
+                        <LinearGradientBrush StartPoint="0.5,0.2" EndPoint="0.5,1">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Offset="0.0" Color="#ffffff"/>
+                                <GradientStop Offset="1.0" Color="#0085d5"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </TextBlock.Foreground>
+                    执行机</TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="1" Background="#ebf2f9">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="32"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Name="btnInstall" Click="btnInstall_Click" Template="{StaticResource InstallButton_Template}" Grid.Row="1" Width="230" Height="40" HorizontalAlignment="Center" Foreground="White" FontSize="17">
+                    立即安装
+                </Button>
+                <Grid Grid.Row="3" Height="195" Visibility="Collapsed" Name="customerConfig" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="25"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="110"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="0,0,0,2">
+                        <TextBox Name="tbxInstallPath" TextChanged="tbxInstallPath_TextChanged" Width="280" Height="25" FontSize="14" Template="{StaticResource textBox}"></TextBox>
+                        <Button Name="btnInstalPathSelect" Click="btnInstalPathSelect_Click" Width="70" Margin="10,0,0,0" FontSize="13" Height="27" Template="{StaticResource commonButton_Template}" >浏览</Button>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="0,2,0,7">
+                        <CheckBox Name="cbxGenerateShortcut" Margin="0,0,30,0" FontSize="14" Style="{StaticResource customCheckBox}" IsChecked="True">生成快捷方式</CheckBox>
+                        <CheckBox Name="cbxAddQuickLaunchBar" Margin="30,0,0,0" FontSize="14" Style="{StaticResource customCheckBox}" IsChecked="True">添加到快速启动栏</CheckBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="0,0,0,7">
+                        <CheckBox Name="cbxAutoStart" Margin="0,0,50,0" FontSize="14" Style="{StaticResource customCheckBox}">开机自动启动</CheckBox>
+                    </StackPanel>
+                    <TextBlock Grid.Row="3" Grid.Column="1" FontSize="14" Margin="0,0,0,7">选择保存执行脚本等数据的个人文件夹保存位置</TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="0,0,0,7">
+                        <RadioButton Click="rbStorageTypeChange_Click" Name="rbSaveMyDocument" Margin="0,0,12,0" GroupName="DocumentSavePath" IsChecked="True" FontSize="14" Style="{StaticResource customRadiobutton}">保存到“我的文档”</RadioButton>
+                        <RadioButton Click="rbStorageTypeChange_Click" Name="rbSaveIntallPath" Margin="15,0,0,0" GroupName="DocumentSavePath" FontSize="14" Style="{StaticResource customRadiobutton}">保存到安装目录</RadioButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Row="5" Grid.Column="1" Margin="0,0,0,7">
+                        <RadioButton Click="rbStorageTypeChange_Click" Name="rbSaveCustome" Margin="0,0,12,0" GroupName="DocumentSavePath" FontSize="14" Style="{StaticResource customRadiobutton}">自定义</RadioButton>
+                        <StackPanel Visibility="Hidden"  Name="spCustomePathSelect" Orientation="Horizontal" Height="40" Margin="0,0,0,7">
+                            <TextBox TextChanged="tbxCustomePath_TextChanged" Name="tbxCustomePath" Width="280" Height="25" FontSize="14" IsReadOnly="True" Template="{StaticResource textBox}">
+                                C:\store</TextBox>
+                            <Button Click="btnCustomePathSelect_Click" Name="btnCustomePathSelect" Width="70" Margin="10,0,0,0" FontSize="13" Height="27" Template="{StaticResource commonButton_Template}" >浏览</Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid >
+                <ToggleButton Name="customeExpand" Click="customeExpand_Click" Grid.Row="4" HorizontalAlignment="Right" Margin="8,2,10,7" FontSize="14" Foreground="#0476bb" Template="{StaticResource ExpanderButtonTemplate}" VerticalAlignment="Bottom">
+                    自定义选项
+                </ToggleButton>
+            </Grid>
+        </Grid>
+        </Grid>
+</Window>

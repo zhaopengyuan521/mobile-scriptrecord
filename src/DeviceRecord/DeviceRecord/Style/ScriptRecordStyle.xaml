@@ -1,0 +1,503 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DeviceRecord.CustomControl">
+    <Style TargetType="local:ExpandButton" x:Key="TreeSplitterButtonStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ExpandButton}">
+                    <Image Name="btnTreeSplitterIcon" Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=NormalImage}"></Image>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Source" TargetName="btnTreeSplitterIcon" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=MouseoverImage}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsExpand"  Value="false">
+                <Setter Property="NormalImage" Value="/DeviceRecord;component/Resources/tool_icon/openExpand_d.png"></Setter>
+                <Setter Property="MouseoverImage" Value="/DeviceRecord;component/Resources/tool_icon/openExpand_f.png"></Setter>
+            </Trigger>
+            <Trigger Property="IsExpand" Value="true">
+                <Setter Property="NormalImage" Value="/DeviceRecord;component/Resources/tool_icon/closeExpand_d.png"></Setter>
+                <Setter Property="MouseoverImage" Value="/DeviceRecord;component/Resources/tool_icon/closeExpand_f.png"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="GridSplitter" x:Key="TreeSplitterStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GridSplitter}">
+                    <local:ExpandButton x:Name="btnExpend" VerticalAlignment="Center" Cursor="Hand" Style="{DynamicResource TreeSplitterButtonStyle}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--运行脚本按钮样式-->
+    <Style TargetType="Button" x:Key="runScriptButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}"
+                                            CornerRadius="6,6,6,6">
+                        <Image Name="btnIcon" Width="23" Source="/Resources/run_e.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="BorderBrush" Value="#707070"/>
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/run_d.png"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="BorderBrush" Value="#0085d5"/>
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/run_e.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#0085d5"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/run_f.png"/>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--开始、结束录制脚本按钮样式-->
+    <Style TargetType="ToggleButton" x:Key="recordScriptButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}"
+                                            CornerRadius="6,6,6,6">
+                        <Image Name="btnIcon" Width="20" Source="/Resources/record_e.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="BorderBrush" Value="#707070"/>
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/record_d.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="#0085d5"/>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/record_e.png"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                <Setter Property="Background" Value="#0085d5"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/record_f.png"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="#0085d5"/>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/stop_e.png"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                <Setter Property="Background" Value="#0085d5"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/stop_f.png"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--暂停、继续录制脚本按钮样式-->
+    <Style TargetType="ToggleButton" x:Key="continueScriptButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}"
+                                            CornerRadius="6,6,6,6">
+                        <Image Name="btnIcon" Source="/Resources/pause_e.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="BorderBrush" Value="#707070"/>
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/pause_d.png"/>
+                            <Setter TargetName="btnIcon" Property="Width" Value="16"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="#0085d5"/>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/pause_e.png"/>
+                                <Setter TargetName="btnIcon" Property="Width" Value="16"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                <Setter Property="Background" Value="#0085d5"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/pause_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Width" Value="16"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="#0085d5"/>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/continue_e.png"/>
+                                <Setter TargetName="btnIcon" Property="Width" Value="20"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                                <Setter Property="Background" Value="#0085d5"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/continue_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Width" Value="20"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--保存脚本按钮样式-->
+    <Style TargetType="Button" x:Key="saveScriptButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}"
+                                            CornerRadius="18">
+                        <Image Name="btnIcon" Width="23" Source="/Resources/save_e.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="BorderBrush" Value="#707070"/>
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/save_d.png"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="BorderBrush" Value="#0085d5"/>
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/save_e.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#0085d5"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/save_f.png"/>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--等待控件按钮样式-->
+    <Style TargetType="Button" x:Key="timerControlButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="18">
+                        <Image Name="btnIcon" Width="23" Source="/Resources/tool_icon/timer_f.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/timer_d.png"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Background" Value="#0085d5"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/timer_f.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#1296db"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/timer_f.png"/>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--屏幕截图控件按钮样式-->
+    <Style TargetType="Button" x:Key="screenshoptControlButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="18">
+                        <Image Name="btnIcon" Width="23" Source="/Resources/tool_icon/screenshopt_f.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/screenshopt_d.png"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Background" Value="#0085d5"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/screenshopt_f.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#1296db"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/screenshopt_f.png"/>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--删除按钮样式-->
+    <Style TargetType="Button" x:Key="deleteButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="18">
+                        <Image Name="btnIcon" Width="23" Source="../Resources/tool_icon/delete_f.png"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#ffffff"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/delete_d.png"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter Property="Background" Value="#0085d5"/>
+                            <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/delete_f.png"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#1296db"></Setter>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/delete_f.png"/>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--点击手机按钮样式-->
+    <Style TargetType="Button" x:Key="clickMobileButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="btnIcon" Width="30" Source="../Resources/tool_icon/click_e.png">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="#000000" Opacity="1" BlurRadius="5"/>
+                        </Image.Effect>
+                    </Image>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/click_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="#0085d5" Opacity="1" BlurRadius="10"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--多任务手机按钮样式-->
+    <Style TargetType="Button" x:Key="swtichsMobileButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="btnIcon" Width="30" Source="../Resources/tool_icon/switch_e.png">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="#000000" Opacity="1" BlurRadius="5"/>
+                        </Image.Effect>
+                    </Image>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/switch_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="#0085d5" Opacity="1" BlurRadius="10"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--主页手机按钮样式-->
+    <Style TargetType="Button" x:Key="homeMobileButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="btnIcon" Width="30" Source="../Resources/tool_icon/home_e.png">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="#000000" Opacity="1" BlurRadius="5"/>
+                        </Image.Effect>
+                    </Image>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/home_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="#0085d5" Opacity="1" BlurRadius="10"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--后退手机按钮样式-->
+    <Style TargetType="Button" x:Key="backMobileButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="btnIcon" Width="30" Source="../Resources/tool_icon/back_e.png">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="#000000" Opacity="1" BlurRadius="5"/>
+                        </Image.Effect>
+                    </Image>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/back_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="#0085d5" Opacity="1" BlurRadius="10"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--刷新手机按钮样式-->
+    <Style TargetType="Button" x:Key="refreshMobileButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image Name="btnIcon" Width="30" Source="../Resources/tool_icon/refresh_e.png">
+                        <Image.Effect>
+                            <DropShadowEffect ShadowDepth="0" Color="#000000" Opacity="1" BlurRadius="5"/>
+                        </Image.Effect>
+                    </Image>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter TargetName="btnIcon" Property="Source" Value="../Resources/tool_icon/refresh_f.png"/>
+                                <Setter TargetName="btnIcon" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect ShadowDepth="0" Color="#0085d5" Opacity="1" BlurRadius="10"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand"></Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,251 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DeviceRecord.CustomControl">
+
+    <!--自定义选项卡样式-->
+    <Style TargetType="local:CustomTab" x:Key="scriptRecordStyle">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#0085d5"/>
+        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomTab">
+                    <Grid Width="{TemplateBinding Width}" Margin="0,0,0,-1" Background="{TemplateBinding Background}">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Vertical" Margin="15,7,15,0">
+                            <Image x:Name="TabIcon" Width="25" Height="30"/>
+                            <ContentPresenter />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/script_f_icon.png"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/script_icon.png"/>
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{TemplateBinding Background}" Opacity="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White" Opacity="0.2"></SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:CustomTab" x:Key="scriptManageStyle">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#0085d5"/>
+        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomTab">
+                    <Grid Width="{TemplateBinding Width}" Margin="0,0,0,-1" Background="{TemplateBinding Background}">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Vertical" Margin="15,7,15,0">
+                            <Image x:Name="TabIcon" Width="25" Height="30"/>
+                            <ContentPresenter />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/manage_f_icon.png"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/manage_icon.png"/>
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{TemplateBinding Background}" Opacity="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White" Opacity="0.2"></SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:CustomTab" x:Key="mobileManageStyle">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#0085d5"/>
+        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomTab">
+                    <Grid Width="{TemplateBinding Width}" Margin="0,0,0,-1" Background="{TemplateBinding Background}">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Vertical" Margin="15,7,15,0">
+                            <Image x:Name="TabIcon" Width="30" Height="30"/>
+                            <ContentPresenter />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/mobile_f_icon.png"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/mobile_icon.png"/>
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{TemplateBinding Background}" Opacity="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White" Opacity="0.1"></SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:CustomTab" x:Key="settingStyle">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#0085d5"/>
+        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomTab">
+                    <Grid Width="{TemplateBinding Width}" Margin="0,0,0,-1" Background="{TemplateBinding Background}">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Vertical" Margin="15,7,15,0">
+                            <Image x:Name="TabIcon" Width="30" Height="30"/>
+                            <ContentPresenter />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/setting_f_icon.png"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/setting_icon.png"/>
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{TemplateBinding Background}" Opacity="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White" Opacity="0.1"></SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="local:CustomTab" x:Key="logViewStyle">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="#0085d5"/>
+        <Setter Property="FontFamily" Value="微软雅黑"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomTab">
+                    <Grid Width="{TemplateBinding Width}" Margin="0,0,0,-1" Background="{TemplateBinding Background}">
+                        <StackPanel  HorizontalAlignment="Center" Orientation="Vertical" Margin="15,7,15,0">
+                            <Image x:Name="TabIcon" Width="30" Height="30"/>
+                            <ContentPresenter />
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/log_f_icon.png"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter TargetName="TabIcon" Property="Source" Value="../Resources/log_icon.png"/>
+                            <Setter Property="Background" >
+                                <Setter.Value>
+                                    <SolidColorBrush Color="{TemplateBinding Background}"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"></Condition>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="White" Opacity="0.1"></SolidColorBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

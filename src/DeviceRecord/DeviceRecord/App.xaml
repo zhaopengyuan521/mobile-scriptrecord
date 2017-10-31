@@ -1,0 +1,17 @@
+﻿<Application x:Class="DeviceRecord.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DeviceRecord.CustomControl"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Style/ControlStyle.xaml"/>
+                <ResourceDictionary Source="/Style/CustomTabStyle.xaml"/>
+                <ResourceDictionary Source="/Style/ExpanderAnimationStyle.xaml"/>
+                <ResourceDictionary Source="/Style/ScriptRecordStyle.xaml"/>
+                <ResourceDictionary Source="/Style/WindowStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

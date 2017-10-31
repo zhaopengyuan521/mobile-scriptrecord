@@ -1,0 +1,79 @@
+﻿<Window x:Class="DeviceRecord.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:DeviceRecord.CustomControl"
+        Title="移动设备脚本录制" Loaded="Window_Loaded" Style="{DynamicResource notBorderWindow}"
+        MouseDoubleClick="MaximizingWindow"
+        WindowStartupLocation="CenterScreen" Icon="Resources/icon.ico">
+    <Window.Resources>
+        <ResourceDictionary>
+            <toolkit:InverseBoolConverter
+                x:Key="inverseBoolConv"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="#0085d5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid x:Name="titleBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                <TextBlock  x:Name="winTitle" Style="{StaticResource winTitle}">移动设备脚本录制</TextBlock>
+            </StackPanel>
+            <StackPanel  Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button x:Name="btnMinWindow" Click="btnMinWindow_Click" ToolTip="最小化" Style="{StaticResource minButton}">
+                </Button>
+                <local:MaxButton x:Name="btnMaxWindow" Click="MaximizingWindow" Style="{StaticResource maxButton}">
+                </local:MaxButton>
+                <Button x:Name="btnClose" Click="btnClose_Click" ToolTip="关闭" Style="{StaticResource closeButton}">
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="topToolBar" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" x:Name="spDeviceList" Margin="15,15,0,0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Image x:Name="deviceIcon" Source="./Resources/deviceIcon.png" Height="35"></Image>
+                <ComboBox x:Name="cbxDeviceList" SelectedIndex="0" Foreground="White" MinWidth="50" Height="25" VerticalAlignment="Top" Margin="5,0,0,0" Style="{StaticResource deviceCombox}"
+                          ItemsSource="{Binding MobileListSource}" DisplayMemberPath="Type" SelectedValuePath="Serialno" SelectedItem="{Binding MobileSelected}"
+                          IsEnabled="{Binding IsMobileListSelected, Converter={StaticResource inverseBoolConv}}">
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" x:Name="spTopToolBtnList" Margin="0,0,10,0" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                <local:CustomTab x:Name="btnScriptRecord" Click="btnScriptRecord_Click" Content="脚本录制" GroupName="Tab" IsChecked="True" Height="60" Style="{StaticResource scriptRecordStyle}"></local:CustomTab>
+                <local:CustomTab x:Name="btnScriptManage" Click="btnScriptManage_Click" Content="脚本管理" GroupName="Tab" Height="60" Style="{StaticResource scriptManageStyle}"></local:CustomTab>
+                <local:CustomTab x:Name="btnMobileManage" Click="btnAppSetting_Click" Content="手机管理" GroupName="Tab" Height="60"  Style="{StaticResource mobileManageStyle}"></local:CustomTab>
+                <local:CustomTab x:Name="btnLogView" Click="btnLogView_Click" Content="日志查看" GroupName="Tab" Height="60"  Style="{StaticResource logViewStyle}"></local:CustomTab>
+                <local:CustomTab x:Name="btnAppSetting" Click="btnAppSetting_Click" Content="应用设置" GroupName="Tab" Height="60"  Style="{StaticResource settingStyle}"></local:CustomTab>
+            </StackPanel>
+        </Grid>
+        <Grid Background="White" Grid.Row="2">
+            <Frame x:Name="WorkFrame" Margin="10,5,10,0" NavigationUIVisibility="Hidden"></Frame>
+        </Grid>
+        <Grid Grid.Row="3" Background="#e6e7e8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Image x:Name="MessageIcon" Visibility="Hidden" Source="./Resources/message_icon.png" Height="17" Width="17" Margin="10,0,0,0"></Image>
+                <TextBlock x:Name="MessageContent" Visibility="Hidden" Foreground="#3e3e3e" FontFamily="微软雅黑" FontSize="13" Height="16" Margin="5,0,0,0">
+                    通知信息
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <Label Foreground="#666666" FontFamily="微软雅黑">版本：</Label>
+                <TextBlock x:Name="appVersion" Foreground="#666666" FontFamily="微软雅黑" Height="16" Margin="0,0,15,0" Text="{Binding Version}"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

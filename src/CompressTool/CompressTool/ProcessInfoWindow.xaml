@@ -1,0 +1,67 @@
+﻿<Window x:Class="CompressTool.ProcessInfoWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d" Height="170" Width="590"
+       Title="安装进度" Loaded="Window_Loaded" BorderThickness="5" SizeToContent="Height" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Window.Background>
+        <ImageBrush ImageSource="Resources\background_img1.png"></ImageBrush>
+    </Window.Background>
+    <Window.Effect>
+        <DropShadowEffect BlurRadius="8" Color="#FF211613" Direction="270" Opacity="0.75" ShadowDepth="1"/>
+    </Window.Effect>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Name="winTitle" Background="#0085d5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition  Width="80"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Name="processTitle" FontSize="15" Foreground="White" Margin="20,10,5,5">解压文件</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button x:Name="btnMinWindow" Click="btnMinWindow_Click" ToolTip="最小化" Style="{StaticResource minButton}">
+                </Button>
+                <Button x:Name="btnClose" Click="btnClose_Click" ToolTip="关闭" Style="{StaticResource closeButton}">
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" ></RowDefinition>
+                <RowDefinition Height="40" ></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="1" Margin="20,0,20,0">
+                    <TextBlock x:Name="tbxProcessTip" Foreground="White" Margin="0,5,0,0" FontSize="13">解压进度：</TextBlock>
+                    <TextBlock Name="tbxProcessMessage" Foreground="White" Margin="0,2,0,0" Padding="10,0,0,0" FontSize="11" Grid.Row="1" Grid.Column="1">
+                    准备就绪
+                    </TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ProgressBar x:Name="instalProcessBar" Style="{StaticResource processBar_Style}" Height="15" Grid.Column="1" OverridesDefaultStyle="True" RenderTransformOrigin="0.5,0.5" Value="0">
+                </ProgressBar>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

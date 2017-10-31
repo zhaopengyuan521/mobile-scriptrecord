@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{85BCE1F9-81A2-4E7D-9AC9-E9DF8D074C1E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DeviceRecord</RootNamespace>
+    <AssemblyName>DeviceRecord</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\DeviceRecord\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\DeviceRecord\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DeviceRecord.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="appium-dotnet-driver">
+      <HintPath>..\Dll\Appium\appium-dotnet-driver.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Dll\Appium\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebDriver">
+      <HintPath>..\Dll\Appium\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support">
+      <HintPath>..\Dll\Appium\WebDriver.Support.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\Dll\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\Dll\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\Dll\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\Dll\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\Dll\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\Dll\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomControl\ExpandButton.cs" />
+    <Compile Include="CustomControl\MaxButton.cs" />
+    <Compile Include="Pages\LogViewPage.xaml.cs">
+      <DependentUpon>LogViewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BaseVM.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="ViewModels\ScriptRecordPageVM.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dialog\ConfirmDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomControl\CustomTab.cs" />
+    <Compile Include="Dialog\ConfirmDialog.xaml.cs">
+      <DependentUpon>ConfirmDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Pages\AppSettingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LogViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ScriptManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ScriptRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\ControlStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\CustomTabStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\ExpanderAnimationStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ScriptRecordStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Pages\AppSettingPage.xaml.cs">
+      <DependentUpon>AppSettingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScriptManagePage.xaml.cs">
+      <DependentUpon>ScriptManagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScriptRecordPage.xaml.cs">
+      <DependentUpon>ScriptRecordPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="appium_uninstall.bat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\KozGoPro-Light.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\background_img.png" />
+    <Resource Include="Resources\background_img1.png" />
+    <Resource Include="Resources\close_btn.png" />
+    <Resource Include="Resources\close_hover_btn.png" />
+    <Resource Include="Resources\compete_success_icon.png" />
+    <Resource Include="Resources\DC_Log 1.png" />
+    <Resource Include="Resources\favicon.ico" />
+    <Resource Include="Resources\image.png" />
+    <Resource Include="Resources\informationIcon.png" />
+    <Resource Include="Resources\min_btn.png" />
+    <Resource Include="Resources\min_hover_btn.png" />
+    <Resource Include="Resources\msgClose_btn.png" />
+    <Resource Include="Resources\msgClose_hover_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\deviceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\manage_f_icon.png" />
+    <Resource Include="Resources\manage_icon.png" />
+    <Resource Include="Resources\script_f_icon.png" />
+    <Resource Include="Resources\script_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\setting_f_icon.png" />
+    <Resource Include="Resources\setting_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\message_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppiumUtility\AppiumUtility.csproj">
+      <Project>{f6e87526-4585-43ef-a336-86a0c9b6d783}</Project>
+      <Name>AppiumUtility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CustomLogger\CustomLogger.csproj">
+      <Project>{f08c6d54-343a-4459-80b0-c83aca0fdc73}</Project>
+      <Name>CustomLogger</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="handle.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\log_f_icon.png" />
+    <Resource Include="Resources\log_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\continue_e.png" />
+    <Resource Include="Resources\continue_f.png" />
+    <Resource Include="Resources\pause_d.png" />
+    <Resource Include="Resources\pause_e.png" />
+    <Resource Include="Resources\pause_f.png" />
+    <Resource Include="Resources\record_d.png" />
+    <Resource Include="Resources\record_e.png" />
+    <Resource Include="Resources\record_f.png" />
+    <Resource Include="Resources\run_d.png" />
+    <Resource Include="Resources\run_e.png" />
+    <Resource Include="Resources\run_f.png" />
+    <Resource Include="Resources\stop_e.png" />
+    <Resource Include="Resources\stop_f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\app_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\save_d.png" />
+    <Resource Include="Resources\save_e.png" />
+    <Resource Include="Resources\save_f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tool_icon\back_e.png" />
+    <Resource Include="Resources\tool_icon\back_f.png" />
+    <Resource Include="Resources\tool_icon\click_e.png" />
+    <Resource Include="Resources\tool_icon\click_f.png" />
+    <Resource Include="Resources\tool_icon\delete_d.png" />
+    <Resource Include="Resources\tool_icon\delete_f.png" />
+    <Resource Include="Resources\tool_icon\home_e.png" />
+    <Resource Include="Resources\tool_icon\home_f.png" />
+    <Resource Include="Resources\tool_icon\refresh_e.png" />
+    <Resource Include="Resources\tool_icon\refresh_f.png" />
+    <Resource Include="Resources\tool_icon\screenshopt_d.png" />
+    <Resource Include="Resources\tool_icon\screenshopt_f.png" />
+    <Resource Include="Resources\tool_icon\switch_e.png" />
+    <Resource Include="Resources\tool_icon\switch_f.png" />
+    <Resource Include="Resources\tool_icon\timer_d.png" />
+    <Resource Include="Resources\tool_icon\timer_f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\deviceImage\device1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mobile_f_icon.png" />
+    <Resource Include="Resources\mobile_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\max_btn.png" />
+    <Resource Include="Resources\max_hover_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\restore_btn.png" />
+    <Resource Include="Resources\restore_hover_btn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CompressTool\CompressTool.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="CompressTool\LongPathTool_v2.20.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="CompressTool\SharpCompress.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tool_icon\closeExpand_d.png" />
+    <Resource Include="Resources\tool_icon\closeExpand_f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tool_icon\openExpand_d.png" />
+    <Resource Include="Resources\tool_icon\openExpand_f.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

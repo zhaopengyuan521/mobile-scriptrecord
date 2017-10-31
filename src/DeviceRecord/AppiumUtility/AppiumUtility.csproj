@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6E87526-4585-43EF-A336-86A0C9B6D783}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppiumUtility</RootNamespace>
+    <AssemblyName>AppiumUtility</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\DeviceRecord\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\DeviceRecord\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppiumProcess\AppiumProcessData.cs" />
+    <Compile Include="AppiumProcess\AppiumProcessDataReceived.cs" />
+    <Compile Include="AppiumProcess\AppiumProcessManager.cs" />
+    <Compile Include="Argument\AndroidActivityArgument.cs" />
+    <Compile Include="Argument\AndroidBootstrapPortArgument.cs" />
+    <Compile Include="Argument\AndroidBrowserArgument.cs" />
+    <Compile Include="Argument\AndroidCoverageArgument.cs" />
+    <Compile Include="Argument\AndroidDeviceReadyTimeoutArgument.cs" />
+    <Compile Include="Argument\AndroidIntentActionArgument.cs" />
+    <Compile Include="Argument\AndroidIntentArgumentsArgument.cs" />
+    <Compile Include="Argument\AndroidIntentCategoryArgument.cs" />
+    <Compile Include="Argument\AndroidIntentFlagsArgument.cs" />
+    <Compile Include="Argument\AndroidPackageArgument.cs" />
+    <Compile Include="Argument\AndroidWaitActivityArgument.cs" />
+    <Compile Include="Argument\AndroidWaitForPackageArgument.cs" />
+    <Compile Include="Argument\AppiumServerArgument.cs" />
+    <Compile Include="Argument\AppiumServerStringArgument.cs" />
+    <Compile Include="Argument\AppiumServerUintArgument.cs" />
+    <Compile Include="Argument\ApplicationPathArgument.cs" />
+    <Compile Include="Argument\AutomationNameArgument.cs" />
+    <Compile Include="Argument\AVDArgsToLaunchArgument.cs" />
+    <Compile Include="Argument\AVDToLaunchArgument.cs" />
+    <Compile Include="Argument\BreakOnAppStartArgument.cs" />
+    <Compile Include="Argument\ChromeDriverPortArgument.cs" />
+    <Compile Include="Argument\CommandTimeoutArgument.cs" />
+    <Compile Include="Argument\CustomDeveloperArguments.cs" />
+    <Compile Include="Argument\DeviceNameArgument.cs" />
+    <Compile Include="Argument\FullResetArgument.cs" />
+    <Compile Include="Argument\IAppiumServerArgument.cs" />
+    <Compile Include="Argument\LanguageArgument.cs" />
+    <Compile Include="Argument\LocaleArgument.cs" />
+    <Compile Include="Argument\LocalTimezoneLogArgument.cs" />
+    <Compile Include="Argument\LogLevelArgument.cs" />
+    <Compile Include="Argument\LogToFileArgument.cs" />
+    <Compile Include="Argument\LogToWebHookArgument.cs" />
+    <Compile Include="Argument\NodeJSDebugArgument.cs" />
+    <Compile Include="Argument\NoResetArgument.cs" />
+    <Compile Include="Argument\OverrideExistingSessionArgument.cs" />
+    <Compile Include="Argument\PlatformNameArgument.cs" />
+    <Compile Include="Argument\PlatformVersionArgument.cs" />
+    <Compile Include="Argument\PrelauchApplicationArgument.cs" />
+    <Compile Include="Argument\QuietLoggingArgument.cs" />
+    <Compile Include="Argument\SelendroidPortArgument.cs" />
+    <Compile Include="Argument\SeleniumGridArgument.cs" />
+    <Compile Include="Argument\ServerAddressArgument.cs" />
+    <Compile Include="Argument\ServerPortArgument.cs" />
+    <Compile Include="Argument\ServerRunnerArgument.cs" />
+    <Compile Include="Argument\ShowTimestampLogArgument.cs" />
+    <Compile Include="Config\DeviceConfigManager.cs" />
+    <Compile Include="Device\MobileDetector.cs" />
+    <Compile Include="Device\MobileManager.cs" />
+    <Compile Include="Device\Win32.cs" />
+    <Compile Include="Exceptions\DownloadException.cs" />
+    <Compile Include="Exceptions\InstallException.cs" />
+    <Compile Include="Exceptions\PackageParseException.cs" />
+    <Compile Include="Logger\AppiumLog.cs" />
+    <Compile Include="Logger\AppLog.cs" />
+    <Compile Include="Logger\DebugLog.cs" />
+    <Compile Include="Logger\DeviceLog.cs" />
+    <Compile Include="Models\AsyncObservaleCollection.cs" />
+    <Compile Include="Models\DeviceEnum.cs" />
+    <Compile Include="Models\DeviceInfo.cs" />
+    <Compile Include="Models\DeviceInfoSources.cs" />
+    <Compile Include="Models\ExecuteResult.cs" />
+    <Compile Include="Models\Inspector\AbstractNode.cs" />
+    <Compile Include="Models\Inspector\INode.cs" />
+    <Compile Include="Models\Inspector\NodeTree.cs" />
+    <Compile Include="Models\Inspector\UIAutomatorAndroidNode.cs" />
+    <Compile Include="Models\Inspector\UIAutomatorAppleNode.cs" />
+    <Compile Include="Notify\NotifyCenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\DefaultAppiumAppSettings.cs" />
+    <Compile Include="Settings\IAppiumAppSettings.cs" />
+    <Compile Include="Settings\IAppiumServerSettings.cs" />
+    <Compile Include="Utility\AndroidSDKCommands.cs" />
+    <Compile Include="Config\AppConfigManager.cs" />
+    <Compile Include="Utility\CommonUtility.cs" />
+    <Compile Include="Utility\FullScreenManager.cs" />
+    <Compile Include="Utility\NetworkHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomLogger\CustomLogger.csproj">
+      <Project>{f08c6d54-343a-4459-80b0-c83aca0fdc73}</Project>
+      <Name>CustomLogger</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

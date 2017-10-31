@@ -1,0 +1,1 @@
+CompressTool\CompressTool.exe -d ..\appium-master
