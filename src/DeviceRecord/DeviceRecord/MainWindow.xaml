@@ -52,7 +52,7 @@
                 <local:CustomTab x:Name="btnScriptRecord" Click="btnScriptRecord_Click" Content="脚本录制" GroupName="Tab" IsChecked="True" Height="60" Style="{StaticResource scriptRecordStyle}"></local:CustomTab>
                 <local:CustomTab x:Name="btnScriptManage" Click="btnScriptManage_Click" Content="脚本管理" GroupName="Tab" Height="60" Style="{StaticResource scriptManageStyle}"></local:CustomTab>
                 <local:CustomTab x:Name="btnMobileManage" Click="btnAppSetting_Click" Content="手机管理" GroupName="Tab" Height="60"  Style="{StaticResource mobileManageStyle}"></local:CustomTab>
-                <local:CustomTab x:Name="btnLogView" Click="btnLogView_Click" Content="日志查看" GroupName="Tab" Height="60"  Style="{StaticResource logViewStyle}"></local:CustomTab>
+                <local:CustomTab x:Name="btnLogView" Click="btnLogView_Click" Content="日志分析" GroupName="Tab" Height="60"  Style="{StaticResource logViewStyle}"></local:CustomTab>
                 <local:CustomTab x:Name="btnAppSetting" Click="btnAppSetting_Click" Content="应用设置" GroupName="Tab" Height="60"  Style="{StaticResource settingStyle}"></local:CustomTab>
             </StackPanel>
         </Grid>
